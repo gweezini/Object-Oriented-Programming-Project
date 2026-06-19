@@ -31,11 +31,11 @@ public abstract class Activity implements Rewardable
 		return date;
 	}
 
-	public void setDurationInMinutes(int durationInMinutes) throws InvalidDurationException
+	public void setDurationInMinutes(int durationInMinutes) throws InvalidDataException
 	{
 		if(durationInMinutes<=0)
 		{
-			throw new InvalidDurationException("Duration must be greater than 0!");
+			throw new InvalidDataException("Duration must be greater than 0!");
 		}
 		this.durationInMinutes=durationInMinutes;
 	}

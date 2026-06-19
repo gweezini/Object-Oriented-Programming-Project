@@ -12,6 +12,7 @@ public class User
 		this.username=username;
 		this.totalPoints=0.0;
 		this.activityLog=new ArrayList<>();
+		this.profile=null;
 	}
 
 	public String getUsername()
@@ -39,15 +40,34 @@ public class User
 	{
 		return activityLog;
 	}
+	
+	public HealthProfile getProfile()
+	{
+			return profile;
+	}
 
+	public void setProfile(HealthProfile profile)
+	{
+		this.profile=profile;
+	}
 	public void displayDashboard() 
 	{
 		System.out.println("\n=== USER DASHBOARD ===");
 		System.out.println("Username: " + username);
 		System.out.println("Total Points: " + totalPoints);
-		System.out.println("Total Activities: " + activityLog.size());
-		System.out.println("\nActivity Log:");
 		
+		if(profile!=null)
+		{
+			System.out.printf("Height: %.1f cm | Weight: %.1f kg%n",profile.getHeightCm(),profile.getWeightKg());
+			System.out.printf("BMI: %.2f%n",profile.calculateBMI());
+		}
+		else
+		{
+			System.out.println("Health Profile: [Not configured]");
+		}
+
+		System.out.println("Total Activities: "+activityLog.size());
+		System.out.println("\nActivity Log:");
 		if (activityLog.isEmpty()) 
 		{
 			System.out.println("No activities recorded yet.");

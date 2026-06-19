@@ -20,6 +20,10 @@ public class FitnessRecordManager
 		{
 			writer.write("USERNAME:" + user.getUsername() + "\n");
 
+			if(user.getProfile()!=null)
+			{
+				writer.write("HEALTHPROFILE,"+user.getProfile().getHeightCm()+","+user.getProfile().getWeightKg()+"\n");
+			}
 			ArrayList<Activity> activities = user.getActivityLog();
 			for (Activity a : activities)
 			{
@@ -89,6 +93,13 @@ public class FitnessRecordManager
 				{
 					switch (parts[0])
 					{
+						case "HEALTHPROFILE":
+						{
+							double height=Double.parseDouble(parts[1]);
+							double weight=Double.parseDouble(parts[2]);
+							user.setProfile(new HealthProfile(height,weight));
+							break;
+						}
 						case "Running":
 						{
 							String id       = parts[1];
